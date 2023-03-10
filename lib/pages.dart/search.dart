@@ -25,6 +25,8 @@ String? cityname;
    Weathermodel weather = await services.getweather(cityname: cityname!);
 
   Provider.of<weatherprovider>(context , listen: false).weatherdata=weather;
+
+   Provider.of<weatherprovider>(context , listen: false).cityname=cityname;
   Navigator.pop(context);
             
           },
