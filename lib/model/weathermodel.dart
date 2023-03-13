@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 
 class Weathermodel
 {
- String data;
+ DateTime data;
 double temp;
 double mintemp;
 double maxtemp;
@@ -28,7 +28,7 @@ factory  Weathermodel.fromjeson( dynamic data)
 {
 var jesondata = data ['forecast']['forecastday'][0]['day'];
  return Weathermodel(
-  data: data['location']['localtime'],
+  data:DateTime.parse(data['created']),
   maxtemp: jesondata['maxtemp_f'],
    mintemp: jesondata['mintemp_f'],
     temp: jesondata['avgtemp_c'], 

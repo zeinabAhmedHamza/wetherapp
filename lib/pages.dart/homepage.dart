@@ -58,7 +58,7 @@ Weathermodel? weatherdata;
     style: const TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
 
              
-   Text(weatherdata!.data,
+   Text( 'updata  at : ${weatherdata!.data.hour.toString()} : ${weatherdata!.data.minute.toString()}'    ,
     style: const TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
 
  Spacer(),

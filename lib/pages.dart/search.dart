@@ -17,12 +17,15 @@ String? cityname;
        Padding(
          padding: const EdgeInsets.all(16.0),
          child: TextField(
+          onChanged: (data){
+        cityname=data;
+          },
           onSubmitted: (data) async{
              cityname=data;
 
       Weatherservices services = Weatherservices();
 
-   Weathermodel weather = await services.getweather(cityname: cityname!);
+   Weathermodel? weather = await services.getweather(cityname: cityname!);
 
   Provider.of<weatherprovider>(context , listen: false).weatherdata=weather;
 
@@ -30,21 +33,35 @@ String? cityname;
   Navigator.pop(context);
             
           },
-          style: const TextStyle(color: Colors.pink),
-          decoration: const InputDecoration(
-              focusedBorder: OutlineInputBorder(
+          style:  const TextStyle(color: Colors.pink),
+          decoration:  InputDecoration(
+              focusedBorder: const OutlineInputBorder(
      borderRadius: BorderRadius.all(Radius.circular(4)),
      borderSide: BorderSide(width: 1,color: Colors.purple),
    ),
 
 
-         border:  OutlineInputBorder(
+         border:  const OutlineInputBorder(
 
       borderSide:  BorderSide(color: Colors.black)
     ),
-            contentPadding: EdgeInsets.symmetric(vertical: 35,horizontal: 30),
-            label: Text('search'),
-            suffixIcon: Icon(Icons.search),
+            contentPadding: const EdgeInsets.symmetric(vertical: 35,horizontal: 30),
+            label: const Text('search'),
+            suffixIcon: GestureDetector(
+
+              onTap: ()async {
+
+                       Weatherservices services = Weatherservices();
+
+   Weathermodel? weather = await services.getweather(cityname: cityname!);
+
+  Provider.of<weatherprovider>(context , listen: false).weatherdata=weather;
+
+   Provider.of<weatherprovider>(context , listen: false).cityname=cityname;
+  Navigator.pop(context);
+              },
+
+              child: const Icon(Icons.search)),
             hintText: 'enter city name '),
       ),
        ),),
